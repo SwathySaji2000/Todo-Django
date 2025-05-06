@@ -1,0 +1,89 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+    <h2 class="text-center mt-5">Hi Today's Game plan {{request.user}}</h2>
+
+    <table class="table w-50 mx-auto mt-5">
+  
+    {% for i in items %}   
+
+     <tr class="mt-2">
+        {% if i.completed_status %}
+        <td><a href="" class = " pt-3 text-decoration-none text-decoration-line-through text-dark ">{{i.taskname}}</a></td>
+        {%else %}
+        
+        <td><a href="" class = " pt-3 text-decoration-none text-dark">{{i.taskname}}</a></td>
+
+        {%endif%}
+
+       <td class="text-muted">{{i.due_date}}</td>
+       <td>
+        <a href="{% url 'update' i.id%}">update</a>
+       </td>
+       
+
+       {% if i.completed_status %}
+       <td>Done</td>
+       {% else %}
+       <td><a href="{% url 'edit'  i.id %}" >Mark as Done</a></td>
+       {% endif %}
+        <td><a href="{% url 'delete' i.id %}">Delete</a></td>
+       
+        
+        <td> <a href="" class=""><i class="fa-solid fa-pen "></i></a></td>
+        <td> <a href="" class=""><i class="fa-solid fa-check"></i></a></td> 
+    
+    </tr>
+    
+
+    {% endfor %}
+</table>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for i in items %}   
+    {{i.taskname}}
+    {{i.description}}       
+    {{i.due_date}}
+
+    <br>
+
+    {% endfor %}
+</body>
+</html>-->
+
+
+
