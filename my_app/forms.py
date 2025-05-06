@@ -46,14 +46,15 @@ class Taskform(forms.ModelForm):
 
 class ForgotpasswordForm(forms.Form):
 
-    email = forms.CharField(max_length=100)
+    email = forms.CharField(max_length=100,widget=forms.EmailInput(attrs={"class":"form-control w-75 mx-auto","placeholder":"enter ur email"}))
 
-
+    
 class OtpverifyForm(forms.Form):
-    otp = forms.CharField(max_length=30)
+    otp = forms.CharField(max_length=30,widget=forms.NumberInput(attrs={"class":"form-control w-75 mx-auto","placeholder":"enter ur otp"}))
 
 
 class ResetPasswordForm(forms.Form):
 
-    password = forms.CharField(max_length=50)
-    confirm_password = forms.CharField(max_length=50)
+    password = forms.CharField(max_length=50,widget = forms.TextInput(attrs={"class":"form-control w-75 mx-auto","placeholder":"enter ur new password"}))
+
+    confirm_password = forms.CharField(max_length=50,widget = forms.TextInput(attrs={"class":"form-control w-75 mx-auto","placeholder":"enter ur confirm password"}))

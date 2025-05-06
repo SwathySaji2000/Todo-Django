@@ -122,8 +122,8 @@ class addtaskview(View):
         form = Taskform(request.POST)
 
         if form.is_valid():
-            TaskModel.objects.create(user_id=request.user,**form.cleaned_data)
-                
+            TaskModel.objects.create(user_id=request.user, **form.cleaned_data)
+            return redirect("task_list")   
         return render(request,"addtask.html",{"form":form})
 
 
@@ -212,8 +212,10 @@ class Forgotpasswordview(View):
           Otpmodel.objects.create(user_id=user,otp=otp)
 
 # send_mail using 
-          send_mail(subject = "otp for password reset",message = str(otp),from_email="swathysaji143@gmail.com"
-                    ,recipient_list=[email])
+          send_mail(subject = "otp for password reset",message = str(otp),from_email="swathysaji143@gmail.com",
+                 recipient_list=[email])
+          
+          return redirect("otpverify")
           
       return render(request,"forgotpswd.html",{"form":form})
   
@@ -230,17 +232,17 @@ class Otpverifyview(View):
 
         if form.is_valid():
             otp = form.cleaned_data.get('otp')
-            item = Otpmodel.objects.get(otp=otp)
+            item = Otpmodel.objects.get(otp = otp)
 
             user_id = item.user_id
-            user = User.objects.get(id = user_id)
+            user = User.objects.get(id = user_id.id)
             username = user.username
 
             if item:
                 
                 request.session['user'] = username
 
-                return redirect("reset_password")
+                return redirect("reset")
             
         return render(request,"otpverify.html",{"form":form})    
     

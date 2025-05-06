@@ -26,14 +26,14 @@ urlpatterns = [
 
     path('login/',Loginview.as_view(),name="login"),
     path('logout/',Logoutview.as_view(),name="logout"),
-    path('task/addtask/',addtaskview.as_view(),name="taskadd"),
+    path('task/addtask/',addtaskview.as_view(),name="add_task"),
     path('task/list/',Taskreadview.as_view(),name="task_list"),
     path('task/update/<int:pk>',Taskupdateview.as_view(),name="update"),
     path('task/delete/<int:pk>',Taskdeleteview.as_view(),name="delete"),
-    path('task/detail/<int:pk>',Taskdetailview.as_view(),name="detail"),
+    path('task/<int:pk>/detail/',Taskdetailview.as_view(),name="detail"),
     path('todo/taskedit/<int:pk>',Taskedit.as_view(),name="edit"),
     path('todo/forgotpswd/',Forgotpasswordview.as_view(),name="forgotpsd"),
-    path('todo/otp_verify/',Otpverifyview.as_view(),name = "reset"),
+    path('todo/otp_verify/',Otpverifyview.as_view(),name = "otpverify"),
     path('todo/resetpswd/',Resetpasswordview.as_view(),name="reset"),
     path('todo/filter/',Taskfilterview.as_view(),name="filter"),
     

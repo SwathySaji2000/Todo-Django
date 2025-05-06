@@ -1,16 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="" method="post">
-        {%csrf_token%}
-        {{form}}
-        <button type="submit">update</button>
+{% extends 'base.html' %}
 
-    </form>
-</body>
-</html>
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-lg p-4 rounded w-75 mx-auto">
+        <h3 class="text-center text-primary mb-4">✏️ Update Task</h3>
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Task Name</label>
+                {{ form.taskname }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Due Date</label>
+                {{ form.due_date }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                {{ form.description }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Task Category</label>
+                {{ form.task_category }}
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">✅ Update Task</button>
+                <a href="{% url 'task_list' %}" class="btn btn-secondary ms-2">🔙 Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
